@@ -12,6 +12,21 @@ messageForm.addEventListener('submit', e => {
         username: username.value,
         message: message.value
     })
+
+    let opt = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user: username.value,
+            message: message.value
+        })
+    }
+
+    fetch('/api/messages', opt)
+        .then(res => res.json())
+        .then(data => console.log(data))
 });
 
 message.addEventListener('keypress', () => {
